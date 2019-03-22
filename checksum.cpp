@@ -1,8 +1,3 @@
-// This program performs IPv4 checksums (internet checksum)
-// The IPv4 checksum is the 16 bit 1's complement of the 1's complement sum of all the 16
-// bit words in the packet.
-// The IPv4 checksum should be 0xffff if there is no corruption
-
 #include <iostream>
 #include <vector>
 #include <string>
@@ -54,9 +49,9 @@ inline vector<string> seperate(string packet) {
 // This function recieves a string packet returns the checksum
 inline short int calculate_checksum(string packet) {
 
-	int sum = 0;							// the max sum of our packet can be 4 bytes
+	int32_t sum = 0;					// the max sum of our packet can be 4 bytes
 	signed short int checksum = 0;	// our resultant checksum
-	unsigned short temp = 0; 			// temporary holder for 16-bit word
+	unsigned short temp = 0; 		// temporary holder for 16-bit word
 	string sum_packet = "";
 	stringstream ss;
 
@@ -82,7 +77,7 @@ inline short int calculate_checksum(string packet) {
 inline int receive(string packet, short int cs) {
 	stringstream ss;
 	string full_packet = "";
-	int sum = 0;					// the max sum of our packet can be 64 bits
+	int32_t sum = 0;				// the max sum of our packet can be 64 bits
 
 	// convert checksum to string and append it with packet
 	string checksum = int_to_string(cs);
